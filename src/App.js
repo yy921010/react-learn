@@ -23,11 +23,23 @@ class App extends Component {
         ]
     }
 
+    addTodo = (todoTitle)=>{
+        console.log(todoTitle);
+        // push语句返回数组的长度
+        this.setState({
+            todos:this.state.todos.concat({
+                id:Math.random(),
+                title: todoTitle,
+                isCompleted:false
+            })
+        })
+    }
+
     render() {
         return (
             <Fragment>
                 <TodoHeader title={this.state.title} desc={this.state.desc}/>
-                <TodoInput/>
+                <TodoInput addTodo={this.addTodo}/>
                 <TodoList todos={this.state.todos}/>
                 <Like/>
             </Fragment>
