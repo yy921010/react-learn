@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Fragment, Component} from 'react';
 import './App.css';
+import {TodoHeader, TodoInput, TodoList,Like} from './components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+
+    state = {
+        title: '待办事项',
+        desc: '今日事今日毕',
+        todos: [
+            {
+                id: 1,
+                title: 'work',
+                isCompleted: true
+            },
+            {
+                id: 2,
+                title: 'sleep',
+                isCompleted: false
+            }
+        ]
+    }
+
+    render() {
+        return (
+            <Fragment>
+                <TodoHeader title={this.state.title} desc={this.state.desc}/>
+                <TodoInput/>
+                <TodoList todos={this.state.todos}/>
+                <Like/>
+            </Fragment>
+        )
+    }
 }
+
 
 export default App;
