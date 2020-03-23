@@ -1,6 +1,6 @@
 import React, {Fragment, Component} from 'react';
 import './App.css';
-import {TodoHeader, TodoInput, TodoList,Like} from './components'
+import {TodoHeader, TodoInput, TodoList, Like} from './components'
 
 
 class App extends Component {
@@ -23,14 +23,26 @@ class App extends Component {
         ]
     }
 
-    addTodo = (todoTitle)=>{
+    addTodo = (todoTitle) => {
         console.log(todoTitle);
         // push语句返回数组的长度
         this.setState({
-            todos:this.state.todos.concat({
-                id:Math.random(),
+            todos: this.state.todos.concat({
+                id: Math.random(),
                 title: todoTitle,
-                isCompleted:false
+                isCompleted: false
+            })
+        })
+    }
+
+
+    onComplete = ({id}) => {
+        this.setState({
+            todos: this.state.todos.map(item => {
+                if (item.id === id) {
+                    item.isCompleted = !item.isCompleted
+                }
+                return item
             })
         })
     }
@@ -40,7 +52,7 @@ class App extends Component {
             <Fragment>
                 <TodoHeader title={this.state.title} desc={this.state.desc}/>
                 <TodoInput addTodo={this.addTodo}/>
-                <TodoList todos={this.state.todos}/>
+                <TodoList todos={this.state.todos} onComplete={this.onComplete}/>
                 <Like/>
             </Fragment>
         )
