@@ -1,5 +1,4 @@
 import React, {Component, createRef} from 'react';
-import PropTypes from 'prop-types'
 
 //createRef 通过ref 组件或者dom，使用之前必须调用react的 createRef 方法创建的ref
 
@@ -15,6 +14,15 @@ class TodoInput extends Component {
         // 在constructor创建业务
 
         this.inputDom = createRef()
+    }
+
+
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
     }
 
     state = {

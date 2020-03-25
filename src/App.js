@@ -1,7 +1,9 @@
 import React, {Fragment, Component} from 'react';
 import './App.css';
-import {TodoHeader, TodoInput, TodoList, Like} from './components'
+import {TodoHeader, TodoInput, TodoList, Like,Shops} from './components'
+import store from './store'
 
+window.store = store
 
 class App extends Component {
 
@@ -50,6 +52,7 @@ class App extends Component {
     render() {
         return (
             <Fragment>
+                <Shops store={store}/>
                 <TodoHeader title={this.state.title} desc={this.state.desc}/>
                 <TodoInput addTodo={this.addTodo}/>
                 <TodoList todos={this.state.todos} onComplete={this.onComplete}/>
